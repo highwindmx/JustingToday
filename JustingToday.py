@@ -52,7 +52,7 @@ def parse_page(pageUrl,selectRule,updateNum,mp3FileHead,targetDir,logName):
 # 第一部分 结束
 
 # 第二部分 队列下载
-def make_DownloadFolder(targetDir):
+def make_downloadfolder(targetDir):
     timePath = strftime("%Y-%m-%d_%H-%M-%S",localtime(time()))
     fullPath = os.path.join(targetDir,timePath)
     os.makedirs(fullPath)
@@ -75,7 +75,7 @@ class download(threading.Thread):
                 break
         return
 
-def startDown(logName,fullPath,targetDir,downloadNum):
+def start_download(logName,fullPath,targetDir,downloadNum):
     logListFile = open(os.path.join(targetDir,logName),"r",encoding="utf-8")
     que=queue.Queue()
     for lineItem in logListFile:
@@ -86,7 +86,6 @@ def startDown(logName,fullPath,targetDir,downloadNum):
         d.start()
     logListFile.close()
     return
-
 # 第二部分 结束
 
 if __name__=='__main__':
@@ -95,8 +94,8 @@ if __name__=='__main__':
         Justing['MP3Head'],Justing['TargetDir'],Justing['LogName']
            )
 
-    Justing['FullPath'] = make_DownloadFolder(Justing['TargetDir'])
-    startDown(Justing['LogName'],Justing['FullPath'],Justing['TargetDir'],Justing['DownloadNum'])
+    Justing['FullPath'] = make_downloadfolder(Justing['TargetDir'])
+    start_download(Justing['LogName'],Justing['FullPath'],Justing['TargetDir'],Justing['DownloadNum'])
 
     # 如果用os.system则需要小心 xdg-open后面的空格哟
     subprocess.Popen(["xdg-open",Justing['FullPath']],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
