@@ -24,7 +24,7 @@ Justing = {
         'Homepage'    : 'http://www.justing.com.cn/index.jsp',
         'SelectRule'  : '#tabs-3 > p > a[target="_blank"]',
         'MP3Head'     : 'http://dl.justing.com.cn/page/{0}.mp3',
-        'ShareFolder' : os.path.expanduser('~')+'/Public/'
+        'ShareFolder' : os.path.expanduser('~/Public/')
 }
 
 # 第一部分 从静雅思听首页地址解析出MP3文件的下载地址
